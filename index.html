@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cálido Camino - Medias Térmicas</title>
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & Estilos Base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333333;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    a {
+      text-decoration: none;
+    }
+    
+    /* Layout Containers */
+    .section {
+      width: 100%;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .two-columns {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .two-columns {
+        flex-direction: row;
+      }
+      .two-columns > div {
+        flex: 1;
+      }
+    }
+
+    /* Botones CTA */
+    .btn-container {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .btn-cta {
+      display: inline-block;
+      background-color: #F2A900;
+      color: #1A1A1A;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 18px 30px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.3);
+      background-color: #e09d00;
+    }
+
+    /* SECCIÓN 1: Header / Logo */
+    .sec-1 {
+      background-color: #2C4869;
+      padding: 20px;
+      text-align: center;
+    }
+    .logo-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto;
+      border: 3px solid #ffffff;
+    }
+
+    /* SECCIÓN 2: Headline Hook */
+    .sec-2 {
+      background-color: #2C4869;
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 20px 40px 20px;
+    }
+    .sec-2 h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .sec-2 h1 {
+        font-size: 2.1rem;
+      }
+    }
+
+    /* SECCIÓN 3: Lead Persuasivo */
+    .sec-3 {
+      background-color: #F0F3F5;
+      color: #222;
+    }
+    .sec-3 h2 {
+      font-size: 1.6rem;
+      color: #2C4869;
+      margin-bottom: 15px;
+    }
+    .sec-3 p {
+      margin-bottom: 15px;
+      font-size: 0.98rem;
+    }
+
+    /* SECCIÓN 4: Miedos y Objeciones */
+    .sec-4 {
+      background-color: #D46A4A;
+      color: #ffffff;
+    }
+    .sec-4 h3 {
+      text-align: center;
+      font-size: 1.3rem;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      color: #FFF;
+    }
+    .sec-4 p {
+      text-align: left;
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+      background: rgba(0,0,0,0.1);
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    /* SECCIÓN 5, 8, 13: CTAs */
+    .sec-cta {
+      background-color: #D46A4A;
+      padding: 25px 20px;
+    }
+
+    /* SECCIÓN 6: Producto Súper Confort */
+    .sec-6 {
+      background-color: #F0F3F5;
+      text-align: center;
+    }
+    .sec-6 h2 {
+      color: #2C4869;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    .sec-6 img {
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* SECCIÓN 7: Combo de Valor */
+    .sec-7 {
+      background-color: #F0F3F5;
+      color: #222;
+    }
+    .combo-box {
+      max-width: 850px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-left: 6px solid #D46A4A;
+    }
+    .combo-list {
+      list-style-type: none;
+      margin: 20px 0;
+    }
+    .combo-list li {
+      margin-bottom: 15px;
+      padding-left: 25px;
+      position: relative;
+    }
+    .combo-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #D46A4A;
+      font-weight: bold;
+    }
+    .price-box {
+      background-color: #FFF3E0;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .urgent-notice {
+      color: #d9534f;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+
+    /* SECCIÓN 9 y 10: Testimonios */
+    .sec-9 {
+      background-color: #2C4869;
+      color: #ffffff;
+      text-align: center;
+      padding-bottom: 10px;
+    }
+    .sec-9 h2 {
+      font-size: 2rem;
+    }
+    .sec-10 {
+      background-color: #2C4869;
+      padding-top: 10px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .testimonials-grid img {
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* SECCIÓN 11: Preguntas Frecuentes (Acordeón) */
+    .sec-11 {
+      background-color: #F0F3F5;
+    }
+    .faq-item {
+      background: #ffffff;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .faq-title {
+      padding: 18px 20px;
+      font-weight: 600;
+      color: #2C4869;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-title::after {
+      content: '+';
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    .faq-item.active .faq-title::after {
+      content: '-';
+    }
+    .faq-content {
+      padding: 0 20px 20px 20px;
+      display: none;
+      color: #555;
+    }
+    .faq-item.active .faq-content {
+      display: block;
+    }
+
+    /* SECCIÓN 12: Garantía */
+    .sec-12 {
+      background-color: #D46A4A;
+      color: #ffffff;
+    }
+    .sec-12 h2 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+    .sec-12 img {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECCIÓN 1: Logo -->
+  <header class="sec-1">
+    <img src="https://github.com/calidocamino/medias/blob/main/WhatsApp%20Image%202026-10-17%20at%2010.52.06%20PM%20(1).jpeg?raw=true" alt="Cálido Camino Logo" class="logo-img">
+  </header>
+
+  <!-- SECCIÓN 2: Promesa de Valor -->
+  <section class="sec-2">
+    <h1>Dejarás de Congelarte a las 5:00 a.m.: Siente la Calidez de Tu Cama en Cualquier Lugar, Desde el Primer Segundo y Sin Que Te Incomoden.</h1>
+  </section>
+
+  <!-- SECCIÓN 3: Lead Persuasivo -->
+  <section class="section sec-3">
+    <div class="container two-columns">
+      <div>
+        <img src="https://github.com/calidocamino/medias/blob/main/WhatsApp%20Image%202026-10-17%20at%2010.09.39%20PM.jpeg?raw=true" alt="Medias Térmicas Cálido Camino" style="border-radius: 12px;">
+      </div>
+      <div>
+        <h2>¿Sufres por el frío en los pies cada mañana?</h2>
+        <p>Te suena familiar: son las 5:15 a.m., estás en el paradero de la buseta en Funza o esperando el bus hacia Bogotá, el viento helado te atraviesa los tobillos y tus pies se sienten como dos bloques de hielo.</p>
+        <p>Para sobrevivir al día, tenías dos opciones horribles: usar medias delgadas de oficina y sufrir un frío helado en tu escritorio hasta el mediodía, o ponerte unas medias peludas e infladas que hacen que tus botines o tenis favoritos te apreten, te tallen y te arruinen el look.</p>
+        <p>Ya no tienes que elegir entre congelarte o caminar incómoda. Con Cálido Camino, llevas el abrazo térmico de tu cobija favorita directo a la oficina. Gracias a nuestra tecnología de microfibra de alta densidad y grosor anatómico cero-bulto, tus pies se mantienen a una temperatura reconfortante todo el día mientras lucen discretos, elegantes y con ese toque de color que alegra tu rutina.</p>
+        <div class="btn-container" style="margin-top: 20px;">
+          <a href="https://wa.link/xnv8aw" target="_blank" class="btn-cta">¡Quiero mis Medias Cálido Camino Para Mi Comodidad Hoy Mismo Sin Salir De Casa!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: Objeciones / Preguntas -->
+  <section class="section sec-4">
+    <div class="container two-columns">
+      <div>
+        <h3>¿De verdad van a caber en mis botines o me van a apretar?</h3>
+        <p>Entendemos perfectamente cómo te sientes. Muchas de nuestras clientas sentían el mismo miedo porque ya habían comprado "medias de invierno" gruesas que terminaban archivadas en el cajón porque les apretaban los empeines en los zapatos de trabajo. Sin embargo, descubrieron que Cálido Camino fue diseñada con tejido térmico de alta densidad anatómico: calienta exactamente como una media gruesa pero tiene el mismo grosor de una media clásica de algodón. Cero compresión molesta, cero talladuras y 100% espacio para tus botas preferidas.</p>
+
+        <h3>¿Vale la pena pagar más por unas medias en lugar de las tradicionales?</h3>
+        <p>Sabemos lo que piensas: en el mercado hay opciones muy baratas. Muchas de nuestras compradoras también pensaban que era un gasto innecesario... hasta que sumaron cuánto gastaban comprando 3 o 4 pares de medias corrientes que se rompen en la primera lavada y no las protegen del frío helado de la madrugada. Descubrieron que al invertir en Cálido Camino, obtienen durabilidad superior que no pierde su capacidad térmica ni forma con las lavadas, garantizando que cada peso invertido se traduzca en mañanas sin dolor, mayor productividad y confort absoluto todo el año.</p>
+
+        <h3>¿Llegarán a tiempo para el frío de esta semana?</h3>
+        <p>Entendemos tu afán por protegerte del clima hoy mismo. Muchas profesionales dudaban antes de pedir por internet pensando que el envío tardaría semanas o que la transportadora fallaría en zonas industriales como Siberia o Funza. Descubrieron que contamos con despachos prioritarios locales y rastreo en tiempo real: tu pedido se procesa el mismo día de la compra para que recibas tu paquete en la puerta de tu casa u oficina en tiempo récord, listo para tu próxima madrugada.</p>
+      </div>
+      <div>
+        <img src="https://github.com/calidocamino/medias/blob/main/WhatsApp%20Image%202026-10-17%20at%2010.10.44%20PM.jpeg?raw=true" alt="Detalle del producto" style="border-radius: 12px;">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: CTA 1 -->
+  <section class="sec-cta">
+    <div class="container btn-container">
+      <a href="https://wa.link/xnv8aw" target="_blank" class="btn-cta">¡SÍ! QUIERO CAMINAR CÁLIDA Y CÓMODA DESDE MAÑANA</a>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 6: Súper Confort Sabana -->
+  <section class="section sec-6">
+    <div class="container">
+      <h2>Súper Confort Sabana</h2>
+      <img src="https://github.com/calidocamino/medias/blob/main/WhatsApp%20Image%202026-10-17%20at%2010.11.02%20PM.jpeg?raw=true" alt="Kit Súper Confort Sabana">
+    </div>
+  </section>
+
+  <!-- SECCIÓN 7: Combo de Valor -->
+  <section class="section sec-7">
+    <div class="container">
+      <div class="combo-box">
+        <p>Al ordenar tu kit hoy, no solo te llevas la tecnología de abrigo definitivo a tus pies. Hemos diseñado un combo de valor exclusivo para consentirte en tus madrugadas:</p>
+        <ul class="combo-list">
+          <li><strong>3x Pares de Medias Térmicas "Cálido Camino"</strong> (Paleta de colores profesionales + destello de optimismo: Azul, Terracota y Mostaza) — <em>(Valor Comercial: $75.000 COP)</em></li>
+          <li><strong>BONO EXCLUSIVO #1:</strong> Guía Digital "Elegancia sin Frío": Cómo combinar botines, tenis y prendas térmicas sin perder tu estilo ejecutivo — <em>(Valorado en: $25.000 COP — <strong>GRATIS</strong>)</em></li>
+          <li><strong>BONO EXCLUSIVO #2:</strong> Bolsa de Lavado Delicado para prolongar la vida útil de tus medias térmicas por años — <em>(Valorado en: $15.000 COP — <strong>GRATIS</strong>)</em></li>
+          <li><strong>Envío Prioritario con Seguro Anticlima</strong> directo a Funza, Mosquera — <em>(Valorado en: $12.000 COP — <strong>GRATIS HOY</strong>)</em></li>
+        </ul>
+        <div class="price-box">
+          <p style="text-decoration: line-through; color: #888; font-size: 1.1rem;">Valor Total Real: $127.000 COP</p>
+          <p style="font-size: 1.8rem; font-weight: 800; color: #2C4869;">HOY PARA TI: $69.900 COP</p>
+          <p style="color: #2e7d32; font-weight: 600;">(Ahorras más del 45% al pedir hoy)</p>
+        </div>
+        <p class="urgent-notice">🔴 Atención: Debido al alto volumen de pedidos por la temporada de lluvias/frío en la Sabana, solo tenemos 50 kits disponibles para despacho inmediato esta semana.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 8: CTA 2 -->
+  <section class="sec-cta">
+    <div class="container btn-container">
+      <a href="https://wa.link/xnv8aw" target="_blank" class="btn-cta">¡SÍ! QUIERO CAMINAR CÁLIDA Y CÓMODA DESDE MAÑANA</a>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 9: Título Testimonios -->
+  <section class="section sec-9">
+    <div class="container">
+      <h2>Testimonios</h2>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 10: Galería de Testimonios -->
+  <section class="section sec-10">
+    <div class="container">
+      <div class="testimonials-grid">
+        <img src="https://github.com/calidocamino/medias/blob/main/zeoob.com_adssqyav5u_photo.png?raw=true" alt="Testimonio 1">
+        <img src="https://github.com/calidocamino/medias/blob/main/zeoob.com_djds4rbxl2_photo.png?raw=true" alt="Testimonio 2">
+        <img src="https://github.com/calidocamino/medias/blob/main/zeoob.com_iz18fne53f_photo.png?raw=true" alt="Testimonio 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 11: FAQ / Acordeón -->
+  <section class="section sec-11">
+    <div class="container" style="max-width: 800px;">
+      <h2 style="text-align: center; color: #2C4869; margin-bottom: 25px;">Preguntas Frecuentes</h2>
+      
+      <div class="faq-item">
+        <div class="faq-title">¿Cómo sé que la talla me quedará bien?</div>
+        <div class="faq-content">
+          <p>Nuestras medias están tejidas con fibra multidireccional inteligente de alta elasticidad. Se adaptan perfectamente a tallas de calzado desde la 35 hasta la 40 sin deformarse, apretar la pantorrilla o descolgarse durante tu caminata diaria. Más de 1.200 profesionales en la Sabana de Bogotá las usan a diario con un 99% de satisfacción en ajuste.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-title">¿Se acaloran o sudan los pies si me las dejo puestas todo el día en la oficina?</div>
+        <div class="faq-content">
+          <p>Para nada. A diferencia de los sintéticos de baja calidad, la tecnología de fibra Cálido Camino incluye microcanaletas de transpiración. Esto significa que mantiene el calor corporal retenido frente al frío exterior, pero evapora la humedad para que tus pies se mantengan secos, frescos y libres de malos olores durante más de 12 horas continuas.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-title">¿Puedo pagar cuando reciba el producto en mi casa u oficina?</div>
+        <div class="faq-content">
+          <p>¡Totalmente! Para tu absoluta tranquilidad y confianza, contamos con el servicio de Pago Contra Entrega en Funza y Mosquera. No tienes que arriesgar tu dinero por anticipado: le pagas directamente al repartidor cuando tengas tu caja en las manos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 12: Garantía -->
+  <section class="section sec-12">
+    <div class="container two-columns">
+      <div>
+        <img src="https://github.com/calidocamino/medias/blob/main/WhatsApp%20Image%202026-10-18%20at%201.16.35%20AM.jpeg?raw=true" alt="Garantía de Satisfacción">
+      </div>
+      <div>
+        <h2>Garantía Incondicional "Pies Abrazados o Tu Dinero de Vuelta"</h2>
+        <p>En Cálido Camino sabemos lo dura que es tu rutina de madrugar y nos tomamos tu bienestar muy en serio. Por eso, el riesgo corre 100% por nuestra cuenta.</p>
+        <br>
+        <p>Pide tu kit hoy, pruébatelas en tu rutina real, sal a coger el bus a las 5:00 a.m. y úsalas durante tus jornadas en la oficina. Si no sientes que son las medias más suaves, cálidas y cómodas que han entrado en tus botines, o si el frío vuelve a colarse en tus pies, simplemente escríbenos a nuestro WhatsApp y te devolveremos el 100% de tu dinero. Sin preguntas incómodas, sin letras chiquitas y sin complicaciones. ¡Queremos ser tu abrazo seguro cada mañana!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 13: CTA Final -->
+  <section class="sec-cta">
+    <div class="container btn-container">
+      <a href="https://wa.link/xnv8aw" target="_blank" class="btn-cta">¡SÍ! QUIERO CAMINAR CÁLIDA Y CÓMODA DESDE MAÑANA</a>
+    </div>
+  </section>
+
+  <!-- Script para el Acordeón FAQ -->
+  <script>
+    document.querySelectorAll('.faq-title').forEach(item => {
+      item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
